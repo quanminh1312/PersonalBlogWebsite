@@ -12,7 +12,7 @@ using blog.Models;
 namespace blog.Migrations
 {
     [DbContext(typeof(BlogContext))]
-    [Migration("20240320091925_init")]
+    [Migration("20240322011648_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -95,8 +95,8 @@ namespace blog.Migrations
 
                     b.Property<string>("Content")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<DateTime>("DateTime")
                         .HasColumnType("datetime2");
@@ -106,8 +106,8 @@ namespace blog.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");

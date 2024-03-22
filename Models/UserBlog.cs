@@ -8,10 +8,10 @@ namespace blog.Models
         public int Id { get; set; }
 
         [Required]
-        [StringLength(50)]
+        [StringLength(255)]
         public string? Title { get; set; }
         [Required]
-        [StringLength(50)]
+        [StringLength(255)]
         public string? Content { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
