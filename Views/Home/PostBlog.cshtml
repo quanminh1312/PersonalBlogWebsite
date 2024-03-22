@@ -1,0 +1,144 @@
+﻿@model blog.Models.UserBlog
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xtra Blog</title>
+    <link rel="stylesheet" href="~/fontawesome/css/all.min.css"> <!-- https://fontawesome.com/ -->
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet"> <!-- https://fonts.google.com/ -->
+    <link href="~/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/css/templatemo-xtra-blog.css" rel="stylesheet">
+    <!--
+
+    TemplateMo 553 Xtra Blog
+
+    https://templatemo.com/tm-553-xtra-blog
+
+    -->
+</head>
+<body>
+    <header class="tm-header" id="tm-header">
+        <div class="tm-header-wrapper">
+            <button class="navbar-toggler" type="button" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="tm-site-header">
+                <div class="mb-3 mx-auto tm-site-logo"><i class="fas fa-times fa-2x"></i></div>
+                <h1 class="text-center">Blog Website</h1>
+            </div>
+            <nav class="tm-nav" id="tm-nav">
+                <ul>
+                    <li class="tm-nav-item">
+                        <a asp-action="Index" asp-controller="Home" class="tm-nav-link HomeBlog">
+                            <i class="fas fa-home"></i>
+                            Blog Home
+                        </a>
+                    </li>
+                    <li class="tm-nav-item">
+                        <a asp-action="MyBlog" asp-controller="Home" class="tm-nav-link MyBlog">
+                            <i class="fas fa-users"></i>
+                            My blog
+                        </a>
+                    </li>
+                    <li class="tm-nav-item">
+                        <a asp-action="Post" asp-controller="Home" class="tm-nav-link">
+                            <i class="fas fa-pen"></i>
+                            Post Blog
+                        </a>
+                    </li>
+                    <li class="tm-nav-item">
+                        <a asp-controller="Home" asp-action="LogOut" class="tm-nav-link">
+                            <i class="fas"></i>
+                            Log Out
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <p class="tm-mb-80 pr-5 text-white">
+                <div class="text-center">
+                    <div>Nguyen Minh Quan personal blog website</div>
+                    <div>This Blog is a multi-purpose HTML template from TemplateMo website</div>
+                    <div>Left side is a sticky menu bar</div>
+                    <div>Right side content will scroll up and down</div>
+                </div>
+            </p>
+        </div>
+    </header>
+    <div class="container-fluid">
+        <main class="tm-main">
+            <div class="row tm-row tm-mb-120">
+                <div class="col-12">
+                    <h2 class="tm-color-primary tm-post-title tm-mb-60">Post Blog</h2>
+                </div>
+                <div class="col-lg-7 tm-contact-left">
+                    <form asp-controller="Home" asp-action="PostBlog" method="POST" class="mb-5 ml-auto mr-0 tm-contact-form" enctype="multipart/form-data">
+                        <div class="form-group row mb-4">
+                            <label asp-for="Title" class="col-sm-3 col-form-label text-right tm-color-primary">Tilte</label>
+                            <div class="col-sm-9">
+                                <input class="form-control mr-0 ml-auto" asp-for="Title" type="text" oninput="limitWords(this, 255)" required>
+                            </div>
+                        </div>
+                        <div class="form-group row mb-4">
+                            <label for="image" class="col-sm-3 col-form-label text-right tm-color-primary">Image</label>
+                            <div class="col-sm-9">
+                                <input class="form-control mr-0 ml-auto" for="image" type="file" name="image" id="fileInput" onchange="checkFile(this.files[0])" required>
+                            </div>
+                        </div>
+                        <div class="form-group row mb-5">
+                            <label asp-for="Content" class="col-sm-3 col-form-label text-right tm-color-primary">Content</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control mr-0 ml-auto" asp-for="Content" rows="8" oninput="limitWords(this, 255)" required></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row text-right">
+                            <div class="col-12">
+                                <button class="tm-btn tm-btn-primary tm-btn-small">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <footer class="row tm-row">
+                <div class="col-md-6 col-12 tm-color-gray">
+                    Design: <a rel="nofollow" target="_parent" href="https://templatemo.com" class="tm-external-link">TemplateMo</a>
+                </div>
+                <div class="col-md-6 col-12 tm-color-gray tm-copyright">
+                    Copyright 2020 Xtra Blog Company Co. Ltd.
+                </div>
+            </footer>
+        </main>
+    </div>
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/templatemo-script.js"></script>
+    <script>
+        function isImage(file) {
+            const validExtensions = ['jpg', 'jpeg', 'png', 'gif', 'bmp'];
+            const fileExtension = file.name.split('.').pop().toLowerCase();
+            return validExtensions.includes(fileExtension);
+        }
+        function checkFile(file) {
+            if (isImage(file)) {
+                // File là ảnh, xử lý tiếp tục
+            } else {
+                // File không phải ảnh, hiển thị thông báo lỗi
+                alert('Vui lòng chọn một tệp ảnh.');
+                clearFileInput();
+                return;
+            }
+        }
+        function clearFileInput() {
+            const fileInput = document.getElementById('fileInput');
+            fileInput.value = ''; // Xóa giá trị của input file
+        }
+        function limitWords(inputElement, maxWords) {
+            const inputText = textareaElement.value;
+
+            if (inputText.length > maxCharacters) {
+                textareaElement.value = inputText.slice(0, maxCharacters);
+            }
+        }
+        </script>
+</body>
+</html>
+

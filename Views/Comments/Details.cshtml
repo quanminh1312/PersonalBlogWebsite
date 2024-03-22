@@ -1,0 +1,42 @@
+﻿@model blog.Models.Comment
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Admin/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Comment</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Content)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Content)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DateTime)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DateTime)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.UserBlog)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.UserBlog.Content)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.userComment)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.userComment.Email)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

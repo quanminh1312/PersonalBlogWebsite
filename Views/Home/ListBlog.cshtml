@@ -1,0 +1,31 @@
+﻿@model List<User>
+@foreach(var user in Model)
+{
+    @foreach(var blog in user.UserBlogs!)
+    {
+        <article class="col-12 col-md-6 tm-post">
+            <hr class="tm-hr-primary">
+            @{
+                var pram = new Dictionary<string, string>
+                {
+                    {"id", blog.Id.ToString() }
+                };
+            }
+            <a asp-action="Blog" asp-controller="Home" asp-all-route-data=pram class="effect-lily tm-post-link tm-pt-60">
+                <div class="tm-post-link-inner">
+                    <img src="~/UserFolders/@user!.Id/@blog.Image" alt="Image" class="img-fluid">
+                </div>
+                <span class="position-absolute tm-new-badge">New</span>
+                <h2 class="tm-pt-30 tm-color-primary tm-post-title">@blog.Title</h2>
+            </a>
+            <div class="d-flex justify-content-between tm-pt-45">
+                <span class="tm-color-primary">@user.Username</span>
+                <span class="tm-color-primary">@blog.DateTime.ToString("MMMM dd, yyyy")</span>
+            </div>
+            <hr>
+            <div class="d-flex justify-content-between">
+                <span>@(blog.Comments == null ? 0 : blog.Comments.Count()) Comments</span>
+            </div>
+        </article>
+    }
+}
