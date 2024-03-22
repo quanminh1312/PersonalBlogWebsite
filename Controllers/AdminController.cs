@@ -12,5 +12,10 @@ namespace blog.Controllers
             }
             return View();
         }
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Login","Home");
+        }
     }
 }

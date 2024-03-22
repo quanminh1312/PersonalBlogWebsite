@@ -109,8 +109,9 @@ namespace blog.Controllers
             //just check the password no need to hash it
             if (userInDb.Password != user.Password)
             {
-                if (user.Password == "admin" && userInDb.Id ==1)
+                if (user.Password!.Equals("admin") && userInDb.Id ==1)
                 {
+                    HttpContext.Session.SetInt32("UserId", userInDb.Id);
                     return RedirectToAction("Index", "Admin");
                 }
                 ModelState.AddModelError("Email", "Invalid Email/Password");
